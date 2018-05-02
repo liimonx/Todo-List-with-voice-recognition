@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="resources/css/reset.min.css">
+    <link rel="stylesheet" href="http://coderentor.com/project-neon/dist/css/neon.min.css">
     <link rel="stylesheet" href="resources/css/style.css">
     <title>Todo-List-with-voice-recognition</title>
 </head>
@@ -26,7 +27,31 @@
         <!--completed task-->
         <ul class="todo" id="completed"></ul>
     </div>
+    <div class="speech-container">
+        <div class="container-wrap neon-light-st">
+            <div class="top-content">
+                <div class="menu">
+                    <button class="close">&times;</button>
+                    <button class="clear">&times;</button>
+                    <button class="done">&times;</button>
+                </div>
+                <div class="say-title">
+                    <h1>Say your to-do</h1>
+                </div>
+            </div>
 
+            <div class="text-container">
+                <textarea name="toDo" id="speech"></textarea>
+            </div>
+
+            <div class="loader">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div>
+        </div>
+    </div>
     <script src="resources/js/app.js"></script>
 </body>
 </html>

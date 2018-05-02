@@ -146,7 +146,7 @@ mic.addEventListener('click', function(){
         console.log(transcript);
       });
     
-    //   recognition.addEventListener('end', recognition.start);
+      recognition.addEventListener('end', recognition.start);
     
       recognition.start();
 });

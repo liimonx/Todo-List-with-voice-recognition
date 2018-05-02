@@ -209,7 +209,7 @@ ul.todo li .buttons button.complete svg{
     -moz-transition: fill 0.2s ease-in-out;
     -ms-transition: fill 0.2s ease-in-out;
     -o-transition: fill 0.2s ease-in-out;
-    transition: background 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 ul.todo#completed{
     position: relative;
@@ -238,4 +238,133 @@ ul.todo#todo:after, ul.todo#completed:after{
     text-align: center;
     font-size: 14px;
     color: #aaaaaa;
+}
+.speech-container{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    background: url("https://images.unsplash.com/photo-1510016785329-91a548661797?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=83087784e83098da941676741fa78c23&auto=format&fit=crop&w=1440&q=80");
+    background-size: cover;
+    background-position: center;    
+    z-index: 99;
+}
+.container-wrap{
+    position: relative;
+    max-width: 100%;
+    min-height: 100vh;
+    margin: auto;
+}
+.top-content{
+    margin: auto;
+    margin-top: 20px;
+    max-width: 1440px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+.menu{
+    max-width: 230px;
+    margin-right: 50px;
+}
+.menu button{
+    width: 45px;
+    height: 45px;
+    margin-left: 17px;
+    line-height: 45px;
+    text-align: center;
+    color: #ea4335;
+    font-size: 30px;
+    font-weight: bold;    
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.say-title h1{
+    color: #fff;
+    font-size: 50px;
+    line-height: 50px;
+    text-shadow: -4px 3px 20px #89a290;
+}
+
+.text-container{
+    margin: auto;
+    margin-top: 50px;
+    max-width: 990px;
+
+}
+.text-container textarea{
+    width: 100%;
+    height: 450px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 30px;
+    background-color: #f8f8f800;
+    resize: none;
+}
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+textarea::-webkit-scrollbar-track {
+    background: #888; 
+}
+ 
+/* Handle */
+textarea::-webkit-scrollbar-thumb {
+    background: #f1f1f1; 
+}
+
+/* Handle on hover */
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+.loader{
+    width: 170px;
+    position: absolute;
+    bottom: 25px;
+}
+.ball{
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	float: left;
+	margin-left: 20px;
+	animation: move1 0.9s linear infinite;
+}
+
+.ball:nth-child(1){
+	background: #4285f4;
+	animation-delay: 0s;
+}
+
+.ball:nth-child(2){
+	background: #ea4335;
+	animation-delay: 0.25s;
+}
+
+.ball:nth-child(3){
+	background: #fbbc05;
+	animation-delay: 0.5s;
+}
+
+.ball:nth-child(4){
+	animation-delay: 0.75s;
+	background: #34a853;
+}
+
+@keyframes move1{
+	0%{
+		transform: translateY(0px);
+	}
+	50%{
+		transform: translateY(-25px);
+	}
 }
