@@ -126,16 +126,13 @@ if (isChrome == true) {
     mic.style.display = "block";
 }
 
-mic.addEventListener('click', speech);
-
-function speech() {
+mic.addEventListener('click', function(){
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     
       const recognition = new SpeechRecognition();
       recognition.interimResults = true;
     
       recognition.addEventListener('result', e =>{
-    
         const transcript = Array.from(e.results)
         .map(result => result[0])
         .map(result => result.transcript)
@@ -152,5 +149,9 @@ function speech() {
     //   recognition.addEventListener('end', recognition.start);
     
       recognition.start();
+});
+
+function speech() {
+    
 }
 
