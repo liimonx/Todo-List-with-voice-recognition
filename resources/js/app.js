@@ -119,8 +119,14 @@ function addItemTodo(text, completed) {
     list.insertBefore(item, list.childNodes[0]);
 }
 
+// if is chrome then show mic icon
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+var mic = document.getElementById('mic')
+if (isChrome == true) {
+    mic.style.display = "block";
+}
 
-document.getElementById('mic').addEventListener('click', speech);
+mic.addEventListener('click', speech);
 
 function speech() {
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
