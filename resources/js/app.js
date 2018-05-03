@@ -164,13 +164,16 @@ recognition.addEventListener('result', e => {
             speechContainer.style.bottom = "100%";
             speechContainer.style.right = "100%";
             textarea.value = "";
-            recognition.stop();
-            recognition.onend = recognition.stop;
+            recognitionStop()
         })
     }
 
 });
 
+function recognitionStop() {
+    recognition.stop();
+    recognition.onend = recognition.stop;
+}
 
 mic.addEventListener("click", (e) => {
     speechContainer.style.bottom = "0";
@@ -183,7 +186,6 @@ mic.addEventListener("click", (e) => {
 speechContainerClosebtn.addEventListener("click", (e) => {
     speechContainer.style.bottom = "100%";
     speechContainer.style.right = "100%";
-    recognition.stop();
-    recognition.onend = recognition.stop;
+    recognitionStop()
 
 })
