@@ -125,8 +125,13 @@ var mic = document.getElementById('mic')
 if (isChrome == true) {
     mic.style.display = "block";
 }
+var speechContainer =document.getElementById("speech-container");
 
 mic.addEventListener('click', function(){
+
+    speechContainer.style.bottom = "0";
+    speechContainer.style.right = "0";
+
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     
       const recognition = new SpeechRecognition();
@@ -138,12 +143,15 @@ mic.addEventListener('click', function(){
         .map(result => result.transcript)
         .join('');
     
-        var micdata = document.getElementById('item').value = transcript;
-    
+        var displayTrans = document.getElementById("display");
+            displayTrans.textContent = transcript;
+
+        var textarea = document.getElementById('speech');
         if (e.results[0].isFinal) {
-            document.getElementById('item')
+            textarea.value += transcript + " ";
+            displayTrans.textContent = " ";
           }
-        console.log(transcript);
+        
       });
     
       recognition.addEventListener('end', recognition.start);
