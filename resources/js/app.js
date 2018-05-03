@@ -144,7 +144,7 @@ recognition.addEventListener('result', e =>{
   var displayTrans = document.getElementById("display");
 
   
-      displayTrans.textContent = transcript;
+    displayTrans.textContent = transcript;
 
   var textarea = document.getElementById('speech');
   var clearTextareaBtn = document.getElementById('clear');
@@ -164,6 +164,8 @@ recognition.addEventListener('result', e =>{
         speechContainer.style.bottom = "100%";
         speechContainer.style.right = "100%";
         textarea.value = "";
+        recognition.stop();
+        recognition.onend = recognition.stop;
       })      
     }
     
