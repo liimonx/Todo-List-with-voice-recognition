@@ -1,4 +1,4 @@
-var data = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')):{
+var data = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')) : {
     todo: [],
     completed: []
 };
@@ -19,9 +19,9 @@ document.getElementById('add').addEventListener('click', function() {
     }
 });
 
-document.getElementById('item').addEventListener('keydown', function (e) {
+document.getElementById('item').addEventListener('keydown', function(e) {
     var value = this.value;
-    if (e.code === 'Enter' && value ) {
+    if (e.code === 'Enter' && value) {
         addItem(value);
     }
 });
@@ -42,7 +42,7 @@ function renderTodoList() {
     for (var j = 0; j < data.completed.length; j++) {
         var value = data.completed[i];
         addItemTodo(value, true);
-         }
+    }
 }
 
 function dataObjectUpdate() {
@@ -53,11 +53,11 @@ function removeItem() {
     var item = this.parentNode.parentNode;
     var parent = item.parentNode;
     var id = parent.id;
-    var  value = item.innerText;
+    var value = item.innerText;
 
     if (id === 'todo') {
         data.todo.splice(data.todo.indexOf(value), 1);
-    } else{
+    } else {
         data.completed.splice(data.completed.indexOf(value), 1);
     }
     dataObjectUpdate()
@@ -68,19 +68,19 @@ function completeItem() {
     var item = this.parentNode.parentNode;
     var parent = item.parentNode;
     var id = parent.id;
-    var  value = item.innerText;
+    var value = item.innerText;
 
     if (id === 'todo') {
         data.todo.splice(data.todo.indexOf(value), 1);
         data.completed.push(value);
-    } else{
+    } else {
         data.completed.splice(data.completed.indexOf(value), 1);
         data.todo.push(value);
     }
     dataObjectUpdate();
 
     //Check if the item should be added to completed list or to re-add to the todo list
-    var target = (id === 'todo') ? document.getElementById('completed'):document.getElementById('todo');
+    var target = (id === 'todo') ? document.getElementById('completed') : document.getElementById('todo');
 
     parent.removeChild(item);
     target.insertBefore(item, target.childNodes[0]);
@@ -91,7 +91,7 @@ function completeItem() {
 
 function addItemTodo(text, completed) {
 
-    var list = (completed) ? document.getElementById('completed'):document.getElementById('todo');
+    var list = (completed) ? document.getElementById('completed') : document.getElementById('todo');
 
     var item = document.createElement('li');
     item.innerText = text;
@@ -126,66 +126,64 @@ if (isChrome == true) {
     mic.style.display = "block";
 }
 
-var speechContainer =document.getElementById("speech-container");
+var speechContainer = document.getElementById("speech-container");
 var speechContainerClosebtn = document.getElementById("close")
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
+
 const recognition = new SpeechRecognition();
 
 recognition.interimResults = true;
 
-recognition.addEventListener('result', e =>{
-  const transcript = Array.from(e.results)
-  .map(result => result[0])
-  .map(result => result.transcript)
-  .join('');
+recognition.addEventListener('result', e => {
+    const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
 
-  var displayTrans = document.getElementById("display");
+    var displayTrans = document.getElementById("display");
 
-  
+
     displayTrans.textContent = transcript;
 
-  var textarea = document.getElementById('speech');
-  var clearTextareaBtn = document.getElementById('clear');
+    var textarea = document.getElementById('speech');
+    var clearTextareaBtn = document.getElementById('clear');
 
-  clearTextareaBtn.addEventListener("click",()=>{
-    textarea.value = "";
-  })
-
-  if (e.results[0].isFinal) {
-      textarea.value += transcript + " ";
-      displayTrans.textContent = "Say More";
-      var doneTextareaBtn = document.getElementById('done');
-      doneTextareaBtn.addEventListener('click', ()=>{
-       if (textarea.value) {
-            addItem(textarea.value);
-        }
-        speechContainer.style.bottom = "100%";
-        speechContainer.style.right = "100%";
+    clearTextareaBtn.addEventListener("click", () => {
         textarea.value = "";
-        recognition.stop();
-        recognition.onend = recognition.stop;
-      })      
+    })
+
+    if (e.results[0].isFinal) {
+        textarea.value += transcript + " ";
+        displayTrans.textContent = "Say More";
+        var doneTextareaBtn = document.getElementById('done');
+        doneTextareaBtn.addEventListener('click', () => {
+            if (textarea.value) {
+                addItem(textarea.value);
+            }
+            speechContainer.style.bottom = "100%";
+            speechContainer.style.right = "100%";
+            textarea.value = "";
+            recognition.stop();
+            recognition.onend = recognition.stop;
+        })
     }
-    
+
 });
 
 
-mic.addEventListener("click", (e)=>{
+mic.addEventListener("click", (e) => {
     speechContainer.style.bottom = "0";
     speechContainer.style.right = "0";
     recognition.start();
     recognition.onend = recognition.start;
-    
+
 })
 
-speechContainerClosebtn.addEventListener("click",(e)=>{
+speechContainerClosebtn.addEventListener("click", (e) => {
     speechContainer.style.bottom = "100%";
     speechContainer.style.right = "100%";
     recognition.stop();
     recognition.onend = recognition.stop;
-    
+
 })
-
-
