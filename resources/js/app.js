@@ -132,6 +132,7 @@ var speechContainerClosebtn = document.getElementById("close")
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     
 const recognition = new SpeechRecognition();
+
 recognition.interimResults = true;
 
 recognition.addEventListener('result', e =>{
@@ -158,29 +159,31 @@ recognition.addEventListener('result', e =>{
       var doneTextareaBtn = document.getElementById('done');
       doneTextareaBtn.addEventListener('click', ()=>{
        if (textarea.value) {
-            addItem(textarea.value)
+            addItem(textarea.value);
         }
         speechContainer.style.bottom = "100%";
         speechContainer.style.right = "100%";
         textarea.value = "";
-        recognition.stop();
-      })
+      })      
     }
+    
 });
 
-// var autoStart = recognition.addEventListener('end', recognition.start);
 
 mic.addEventListener("click", (e)=>{
     speechContainer.style.bottom = "0";
     speechContainer.style.right = "0";
     recognition.start();
-    // console.log(autoStart);
+    recognition.onend = recognition.start;
     
 })
 
 speechContainerClosebtn.addEventListener("click",(e)=>{
     speechContainer.style.bottom = "100%";
     speechContainer.style.right = "100%";
-    recognition.stop()
+    recognition.stop();
+    recognition.onend = recognition.stop;
+    
 })
+
 
