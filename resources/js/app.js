@@ -125,41 +125,62 @@ var mic = document.getElementById('mic')
 if (isChrome == true) {
     mic.style.display = "block";
 }
+
 var speechContainer =document.getElementById("speech-container");
+var speechContainerClosebtn = document.getElementById("close")
 
-mic.addEventListener('click', function(){
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
 
-    speechContainer.style.bottom = "0";
-    speechContainer.style.right = "0";
+recognition.addEventListener('result', e =>{
+  const transcript = Array.from(e.results)
+  .map(result => result[0])
+  .map(result => result.transcript)
+  .join('');
 
-    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
-      const recognition = new SpeechRecognition();
-      recognition.interimResults = true;
-    
-      recognition.addEventListener('result', e =>{
-        const transcript = Array.from(e.results)
-        .map(result => result[0])
-        .map(result => result.transcript)
-        .join('');
-    
-        var displayTrans = document.getElementById("display");
-            displayTrans.textContent = transcript;
+  var displayTrans = document.getElementById("display");
 
-        var textarea = document.getElementById('speech');
-        if (e.results[0].isFinal) {
-            textarea.value += transcript + " ";
-            displayTrans.textContent = " ";
-          }
-        
-      });
-    
-      recognition.addEventListener('end', recognition.start);
-    
-      recognition.start();
+  
+      displayTrans.textContent = transcript;
+
+  var textarea = document.getElementById('speech');
+  var clearTextareaBtn = document.getElementById('clear');
+
+  clearTextareaBtn.addEventListener("click",()=>{
+    textarea.value = "";
+  })
+
+  if (e.results[0].isFinal) {
+      textarea.value += transcript + " ";
+      displayTrans.textContent = "Say More";
+      var doneTextareaBtn = document.getElementById('done');
+      doneTextareaBtn.addEventListener('click', ()=>{
+       if (textarea.value) {
+            addItem(textarea.value)
+        }
+        speechContainer.style.bottom = "100%";
+        speechContainer.style.right = "100%";
+        textarea.value = "";
+        recognition.stop();
+      })
+    }
 });
 
-function speech() {
+// var autoStart = recognition.addEventListener('end', recognition.start);
+
+mic.addEventListener("click", (e)=>{
+    speechContainer.style.bottom = "0";
+    speechContainer.style.right = "0";
+    recognition.start();
+    // console.log(autoStart);
     
-}
+})
+
+speechContainerClosebtn.addEventListener("click",(e)=>{
+    speechContainer.style.bottom = "100%";
+    speechContainer.style.right = "100%";
+    recognition.stop()
+})
 

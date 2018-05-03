@@ -265,9 +265,21 @@ ul.todo#todo:after, ul.todo#completed:after{
     flex-wrap: wrap;
     position: relative;
 }
+#display{
+    text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    flex: 1 1 400px;
+    /* width: 100%; */
+    height: 50px;
+    line-height: 50px;
+    background: rgba(41, 255, 184, 0.267);
+    border-radius: 50px;
+}
 .menu{
     max-width: 230px;
-    margin-right: 50px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 .menu button{
     width: 45px;
@@ -290,10 +302,10 @@ ul.todo#todo:after, ul.todo#completed:after{
     height: 22px;
     
 }
-.menu button.clear{
+.menu button#clear{
     background: rgba(255, 210, 41, 0.78);
 }
-.menu button.done{
+.menu button#done{
     background: #25b99a;
 }
 .menu button svg{
@@ -304,29 +316,12 @@ ul.todo#todo:after, ul.todo#completed:after{
 }
 
 
-.say-title h1{
-    color: #fff;
-    font-size: 50px;
-    line-height: 50px;
-    text-shadow: -4px 3px 20px #89a290;
-}
-
 .text-container{
     margin: auto;
     max-width: 990px;
 
 }
-#display{
-    text-align: center;
-    color: #ffffff;
-    font-size: 20px;
-    width: 100;
-    height: 50px;
-    line-height: 50px;
-    background: rgba(41, 255, 184, 0.267);
-    margin: 20px 0;
-    border-radius: 50px;
-}
+
 .text-container textarea{
     width: 100%;
     height: 450px;
