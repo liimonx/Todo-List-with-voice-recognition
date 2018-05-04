@@ -127,7 +127,8 @@ if (isChrome == true) {
 }
 
 var speechContainer = document.getElementById("speech-container");
-var speechContainerClosebtn = document.getElementById("close")
+var speechContainerClosebtn = document.getElementById("close");
+var playAndPausebtn = document.getElementById("PP");
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -174,18 +175,38 @@ function recognitionStop() {
     recognition.stop();
     recognition.onend = recognition.stop;
 }
+function recognitionStart() {
+    recognition.start();
+    recognition.onend = recognition.start;
+}
 
 mic.addEventListener("click", (e) => {
     speechContainer.style.bottom = "0";
     speechContainer.style.right = "0";
-    recognition.start();
-    recognition.onend = recognition.start;
-
+    speechContainer.style.opacity = "1";
+    playBtn.style.opacity = "0";
+    pauseBtn.style.opacity = "1 ";
+    recognitionStart()
 })
 
 speechContainerClosebtn.addEventListener("click", (e) => {
     speechContainer.style.bottom = "100%";
     speechContainer.style.right = "100%";
+    speechContainer.style.opacity = "0";
     recognitionStop()
 
+})
+var playBtn = document.getElementById("play");
+var pauseBtn = document.getElementById("pause");
+
+playAndPausebtn.addEventListener("click", (e)=>{
+    if (playBtn.style.opacity === "0") {
+        playBtn.style.opacity = "1";
+        pauseBtn.style.opacity = "0";
+        recognitionStop()
+    }else{
+        playBtn.style.opacity = "0";
+        pauseBtn.style.opacity = "1 ";
+        recognitionStart()
+    }
 })

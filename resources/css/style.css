@@ -249,6 +249,7 @@ ul.todo#todo:after, ul.todo#completed:after{
     background-size: cover;
     background-position: center;    
     z-index: 99;
+    opacity: 0;
     transition: 0.3s linear;
 }
 .container-wrap{
@@ -277,7 +278,7 @@ ul.todo#todo:after, ul.todo#completed:after{
     border-radius: 50px;
 }
 .menu{
-    max-width: 230px;
+    max-width: 430px;
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -296,11 +297,23 @@ ul.todo#todo:after, ul.todo#completed:after{
     border: none;
     outline: none;
     overflow: hidden;
+    position: relative;
 }
 .top-content .menu button svg{
     width: 22px;
     height: 22px;
     
+}
+.top-content .menu button #pause{
+    transition: all 0.3s linear;
+}
+.top-content .menu button #play {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s linear;
 }
 .menu button#clear{
     background: rgba(255, 210, 41, 0.78);
