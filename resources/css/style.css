@@ -306,6 +306,13 @@ ul.todo#todo:after, ul.todo#completed:after{
 }
 .top-content .menu button #pause{
     transition: all 0.3s linear;
+    
+}
+.top-content .menu button#PP{
+    background: rgba(103, 198, 255, 0.7803921568627451);
+}
+.top-content .menu button#listen{
+    background: rgba(99, 255, 48, 0.5019607843137255);
 }
 .top-content .menu button #play {
     top: 50%;

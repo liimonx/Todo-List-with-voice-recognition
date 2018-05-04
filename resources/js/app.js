@@ -150,13 +150,14 @@ recognition.addEventListener('result', e => {
     var textarea = document.getElementById('speech');
     var clearTextareaBtn = document.getElementById('clear');
 
-    clearTextareaBtn.addEventListener("click", () => {
-        textarea.value = "";
-    })
-
     if (e.results[0].isFinal) {
         textarea.value += transcript + " ";
-        displayTrans.textContent = "Say More";
+        displayTrans.textContent = "Have More?";
+
+        clearTextareaBtn.addEventListener("click", () => {
+            textarea.value = "";
+        })
+
         var doneTextareaBtn = document.getElementById('done');
         doneTextareaBtn.addEventListener('click', () => {
             if (textarea.value) {
@@ -170,7 +171,15 @@ recognition.addEventListener('result', e => {
     }
 
 });
+var listenBtn = document.getElementById("listen");
 
+listenBtn.addEventListener("click", ()=>{
+    recognitionStop();
+    console.log("SOORRY! The features is currently not available");
+    
+    playBtn.style.opacity = "1";
+    pauseBtn.style.opacity = "0";
+})
 function recognitionStop() {
     recognition.stop();
     recognition.onend = recognition.stop;
@@ -210,3 +219,4 @@ playAndPausebtn.addEventListener("click", (e)=>{
         recognitionStart()
     }
 })
+
